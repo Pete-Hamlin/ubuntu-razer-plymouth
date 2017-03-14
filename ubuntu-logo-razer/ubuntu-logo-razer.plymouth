@@ -5,4 +5,4 @@ ModuleName=script
 
 [script]
 ImageDir=/usr/share/plymouth/themes/ubuntu-logo-razer
-ScriptFile=/usr/share/plymouth/themes/ubuntu-logo-razer/ubuntu-logo.script
+ScriptFile=/usr/share/plymouth/themes/ubuntu-logo-razer/ubuntu-logo-razer.script

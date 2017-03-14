@@ -46,12 +46,27 @@ debugsprite = Sprite();
 debugsprite_bottom = Sprite();
 debugsprite_medium = Sprite();
 
+# Ubuntu Font
+ubuntufont = "Ubuntu 11";
+ubuntualignment = "center";
+
+# Scale factor
+scalefactor = 1;
+
 # are we currently prompting for a password?
 prompt_active = 0;
 
+# Generic scalable image loader
+fun LoadScaleImage (imagepath) {
+    image = Image (imagepath);
+    image = image.Scale (image.GetWidth() * scalefactor, image.GetHeight() * scalefactor);
+    return image;
+}
+
 # General purpose function to create text
 fun WriteText (text, colour) {
-    image = Image.Text (text, colour.red, colour.green, colour.blue);
+    image = Image.Text (text, colour.red, colour.green, colour.blue, color.alpha, ubuntufont, ubuntualignment);
+    image = image.Scale (image.GetWidth() * scalefactor, image.GetHeight() * scalefactor);
     return image;
 }
 
@@ -184,7 +199,7 @@ if (bits_per_pixel == 4) {
     question_field_filename = "password_field.png";
 }
 
-logo.image = Image (logo_filename);
+logo.image = LoadScaleImage (logo_filename);
 logo.sprite = Sprite ();
 logo.sprite.SetImage (logo.image);
 logo.width = logo.image.GetWidth ();
@@ -206,8 +221,8 @@ fsck_notification.image = ImageToActionText ("");
 
 status = "normal";
 
-progress_indicator.bullet_off = Image (progress_dot_off_filename);
-progress_indicator.bullet_on = Image (progress_dot_on_filename);
+progress_indicator.bullet_off = LoadScaleImage (progress_dot_off_filename);
+progress_indicator.bullet_on = LoadScaleImage (progress_dot_on_filename);
 progress_indicator.bullet_width = progress_indicator.bullet_off.GetWidth ();
 progress_indicator.bullet_height = progress_indicator.bullet_off.GetHeight ();
 progress_indicator.bullet_hspacing = progress_indicator.bullet_width * 1.1;
@@ -515,9 +530,8 @@ fun password_dialogue_setup (message_label) {
 
     local.entry;
     local.bullet_image;
-
-    bullet_image = Image (progress_dot_off_filename);
-    entry.image = Image (password_field_filename);
+    bullet_image = LoadScaleImage (progress_dot_off_filename);
+    entry.image = LoadScaleImage (password_field_filename);
 
     # Hide the normal labels
     prompt_active = 1;
@@ -1033,9 +1047,9 @@ fun question_dialogue_setup (message_label, text_image) {
     local.content;
     local.margin;
 
-    field.image = Image (question_field_filename);
+    field.image = LoadScaleImage (question_field_filename);
     content = Sprite ();
-    bullet_image = Image (progress_dot_off_filename);
+    bullet_image = LoadScaleImage (progress_dot_off_filename);
     margin = bullet_image.GetWidth() / 2;
 
     # Hide the normal labels
