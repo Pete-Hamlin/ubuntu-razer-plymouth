@@ -21,7 +21,7 @@ Therefore, with that being said, you are welcome to use this theme, install it o
 Copy the `ubuntu-logo-razer` folder into your `/usr/share/plymouth/themes/` folder (you will need to use sudo to do this). then run the following in your terminal:
 
 ```bash
-$ sudo update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth /lib/plymouth/themes/ubuntu-logo-razer/ubuntu-logo-razer.plymouth 100
+$ sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/ubuntu-logo-razer/ubuntu-logo-razer.plymouth 100
 $ sudo update-alternatives --config default.plymouth
 ```
 
